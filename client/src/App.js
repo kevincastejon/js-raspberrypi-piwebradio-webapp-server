@@ -210,7 +210,9 @@ export default class App extends Component {
             margin: 'auto',
           }}
           >
+          <div>
             <a href="https://doc.ubuntu-fr.org/liste_radio_france" rel="noopener noreferrer" target="_blank">Trouver une radio</a>
+          </div>
             <Button
               type="primary"
               style={{ backgroundColor: 'green' }}

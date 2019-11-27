@@ -90,7 +90,6 @@ server.delete('/api/radios', (req, res) => {
       });
   });
 });
-// server.all('*', (req, res) => handle(req, res));
 
 server.listen(80, (err) => {
   if (err) throw err;

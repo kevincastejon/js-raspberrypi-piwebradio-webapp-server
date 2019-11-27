@@ -224,7 +224,9 @@ export default class App extends Component {
             <SortableContainer
               onSortEnd={(
                 { oldIndex, newIndex },
-              ) => this.sortRadio(radios[oldIndex].name, newIndex)}
+              ) => {if (oldIndex !== newIndex) {
+                this.sortRadio(radios[oldIndex].name, newIndex)
+              }}}
             >
               {radios.map((radio, index) => (
                 <SortableItem

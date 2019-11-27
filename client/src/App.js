@@ -97,7 +97,7 @@ export default class App extends Component {
   addRadio = (name, url) => {
     this.setState({ tempName: '', tempUrl: '' });
     const data = { name, url };
-    fetch('http://localhost:8888/api/radios', {
+    fetch('api/radios', {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -117,7 +117,7 @@ export default class App extends Component {
 
   editRadio = (oldName, newName, newUrl) => {
     const data = { oldName, newName, newUrl };
-    fetch('http://localhost:8888/api/radios', {
+    fetch('api/radios', {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -139,7 +139,7 @@ export default class App extends Component {
 
   sortRadio = (name, newIndex) => {
     const data = { name, newIndex };
-    fetch('http://localhost:8888/api/radios', {
+    fetch('api/radios', {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -159,7 +159,7 @@ export default class App extends Component {
 
   deleteRadio = (name) => {
     const data = { name };
-    fetch('http://localhost:8888/api/radios', {
+    fetch('api/radios', {
       headers: {
         'Content-Type': 'application/json',
       },

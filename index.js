@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const fso = require('fs');
 const fs = require('fs').promises;
@@ -9,6 +10,7 @@ const config = {};
 config.radios = JSON.parse(fso.readFileSync(path.resolve(__dirname, 'files', 'radios.json'))).radios;
 const radio = new Radio(config);
 const server = express();
+server.use(cors());
 server.use(logger('dev'));
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));

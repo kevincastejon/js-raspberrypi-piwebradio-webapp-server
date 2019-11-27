@@ -1,0 +1,25 @@
+{
+  "name": "piwebradio-webapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"node index.js\" \"npx serve -l 80 ./client/build\"",
+    "build": "cd ./client/ && npm run build"
+  },
+  "dependencies": {
+    "concurrently": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "piwebradio": "^1.14.0"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^1.7.0"
+  }
+}

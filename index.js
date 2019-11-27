@@ -1,20 +1,14 @@
 const cors = require('cors');
 const express = require('express');
 const path = require('path');
-// const fso = require('fs');
+const fso = require('fs');
 const fs = require('fs').promises;
 const logger = require('morgan');
-// const Radio = require('piwebradio');
-// const app = express();
-// const handle = app.getRequestHandler();
-// const config = require('./config');
+const Radio = require('piwebradio');
 
-// config.radios = JSON.parse(fso.readFileSync(path.resolve(__dirname, 'files', 'radios.json'))).radios;
-// const radio = new Radio(config);
-
-// const writeMPDRadioFile = (radios) => (fs.writeFile(path.resolve('/', 'home', 'pi', 'radios', 'radios.m3u'), `#EXTM3U\r\n${radios.map((r) => r.url).join('\r\n')}`));
-
-
+const config = {};
+config.radios = JSON.parse(fso.readFileSync(path.resolve(__dirname, 'files', 'radios.json'))).radios;
+const radio = new Radio(config);
 const server = express();
 server.use(logger('dev'));
 server.use(cors());
@@ -37,7 +31,7 @@ server.post('/api/radios', (req, res) => {
       fs.writeFile(path.resolve(__dirname, 'files', 'radios.json'), JSON.stringify({ radios }))
         .then(() => {
           res.send({ error: null });
-          // radio.refreshRadios(radios);
+          radio.refreshRadios(radios);
         });
     }
   });
@@ -60,7 +54,7 @@ server.patch('/api/radios', (req, res) => {
       fs.writeFile(path.resolve(__dirname, 'files', 'radios.json'), JSON.stringify({ radios }))
         .then(() => {
           res.send({ error: null });
-          // radio.refreshRadios(radios);
+          radio.refreshRadios(radios);
         });
     }
   });
@@ -81,7 +75,7 @@ server.put('/api/radios', (req, res) => {
       fs.writeFile(path.resolve(__dirname, 'files', 'radios.json'), JSON.stringify({ radios }))
         .then(() => {
           res.send({ error: null });
-          // radio.refreshRadios(radios);
+          radio.refreshRadios(radios);
         });
     }
   });
@@ -93,7 +87,7 @@ server.delete('/api/radios', (req, res) => {
     fs.writeFile(path.resolve(__dirname, 'files', 'radios.json'), JSON.stringify({ radios: radios.filter((r) => r.name !== name) }))
       .then(() => {
         res.send({ error: null });
-        // radio.refreshRadios(radios.filter((r) => r.name !== name));
+        radio.refreshRadios(radios.filter((r) => r.name !== name));
       });
   });
 });

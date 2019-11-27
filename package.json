@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall":"cd ./client/ && npm install && npm run build",
-    "start": "concurrently \"node index.js\" \"npx serve -l 80 ./client/build\"",
+    "start": "concurrently \"sudo node index.js\" \"sudo npx serve -l 80 ./client/build\"",
     "build": "cd ./client/ && npm run build"
   },
   "dependencies": {

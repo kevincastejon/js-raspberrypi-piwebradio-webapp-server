@@ -184,9 +184,7 @@ export default class App extends Component {
       editingRadio: null,
       deletingRadio: null,
     }, () => {
-      fetch('http://localhost:8888/api/radios', {
-        method: 'GET',
-      })
+      fetch('api/radios')
         .then((res) => res.json())
         .then((radios) => this.setState({ radios: radios.radios }));
     });

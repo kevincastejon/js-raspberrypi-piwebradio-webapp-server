@@ -3,13 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "preinstall":"cd ./client/ && npm install && npm run build",
-    "start": "concurrently \"sudo node index.js\" \"sudo npx serve -l 80 ./client/build\"",
+    "preinstall": "cd ./client/ && npm install && npm run build",
+    "start": "node index.js",
     "build": "cd ./client/ && npm run build"
   },
   "dependencies": {
     "concurrently": "^5.0.0",
-    "cors": "^2.8.5",
     "express": "~4.16.1",
     "morgan": "~1.9.1",
     "piwebradio": "^1.14.0"

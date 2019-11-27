@@ -1,4 +1,3 @@
-const cors = require('cors');
 const express = require('express');
 const path = require('path');
 const fso = require('fs');
@@ -11,9 +10,9 @@ config.radios = JSON.parse(fso.readFileSync(path.resolve(__dirname, 'files', 'ra
 const radio = new Radio(config);
 const server = express();
 server.use(logger('dev'));
-server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
+server.use(express.static('client/build'));
 server.get('/api/radios', (req, res) => {
   fs.readFile(path.resolve(__dirname, 'files', 'radios.json')).then((json) => {
     res.send(json);
@@ -93,7 +92,7 @@ server.delete('/api/radios', (req, res) => {
 });
 // server.all('*', (req, res) => handle(req, res));
 
-server.listen(8888, (err) => {
+server.listen(80, (err) => {
   if (err) throw err;
-  console.log('> API listening on http://localhost:8888');
+  console.log('> Server listening on http://localhost:80');
 });

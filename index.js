@@ -4,7 +4,7 @@ const path = require('path');
 const fso = require('fs');
 const fs = require('fs').promises;
 const logger = require('morgan');
-const Radio = require('piwebradio');
+const Radio = require('raspberrypi-piwebradio');
 
 const config = {};
 config.radios = JSON.parse(fso.readFileSync(path.resolve(__dirname, 'files', 'radios.json'))).radios;

@@ -1,6 +1,6 @@
 {
   "name": "raspberrypi-piwebradio-webapp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "preinstall": "cd ./client/ && npm install && npm run build",

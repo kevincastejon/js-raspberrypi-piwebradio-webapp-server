@@ -1,18 +1,31 @@
 {
   "name": "raspberrypi-piwebradio-webapp",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.1.0",
+  "description": "Web app for raspberry piwebradio",
+  "main": "index.js",
   "scripts": {
     "preinstall": "cd ./client/ && npm install && npm run build",
     "start": "sudo node index.js",
-    "build": "cd ./client/ && npm run build"
+    "build": "cd ./client/ && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevincastejon/js-raspberrypi-piwebradio-webapp.git"
+  },
+  "keywords": [
+    "raspberry",
+    "pi",
+    "raspberrypi",
+    "piwebradio",
+    "web",
+    "app"
+  ],
   "dependencies": {
-    "concurrently": "^5.0.0",
     "cors": "^2.8.5",
     "express": "~4.16.1",
     "morgan": "~1.9.1",
-    "raspberrypi-piwebradio": "^1.22.0"
+    "raspberrypi-piwebradio": "^1.24.0"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
@@ -22,5 +35,11 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0"
-  }
+  },
+  "author": "kevincastejon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevincastejon/js-raspberrypi-piwebradio-webapp/issues"
+  },
+  "homepage": "https://github.com/kevincastejon/js-raspberrypi-piwebradio-webapp#readme"
 }

@@ -1,14 +1,16 @@
-import 'antd/dist/antd.css';
 import React, { Component } from 'react';
 import {
-  List, Alert, Avatar, Spin, Icon, Input, Button, Modal, notification,
+  List, Alert, Avatar, Spin, Input, Button, Modal, notification,
 } from 'antd';
 import {
   sortableContainer,
   sortableElement,
 } from 'react-sortable-hoc';
-
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+import { LoadingOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined } from '@ant-design/icons';
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 const openNotification = (title, type = 'error') => {
   notification[type]({
@@ -57,10 +59,10 @@ const SortableItem = sortableElement(({
         <div>
           <Button
             type="primary"
-            title="Editer"
+            title="Edit"
             onClick={onEdit}
           >
-            <Icon type="edit" theme="filled" />
+                        <EditOutlined theme="filled" />
           </Button>
           {' '}
           <Button
@@ -68,7 +70,7 @@ const SortableItem = sortableElement(({
             type="danger"
             onClick={onDelete}
           >
-            <Icon type="delete" theme="filled" />
+                        <DeleteOutlined theme="filled" />
           </Button>
         </div>
       )}
@@ -107,9 +109,9 @@ export default class App extends Component {
       .then((res) => res.json())
       .then((json) => {
         if (json.error === 'DUPLICATE_NAME') {
-          openNotification('Une radio portant le même nom existe déjà!');
+          openNotification('A radio with the same name is already registered!');
         } else {
-          openNotification('Radio ajoutée!', 'success');
+          openNotification('Added radio!', 'success');
         }
         this.refresh();
       });
@@ -127,11 +129,11 @@ export default class App extends Component {
       .then((res) => res.json())
       .then((json) => {
         if (json.error === 'NO_RADIO') {
-          openNotification('Cette radio n\'existe pas!');
+          openNotification('This radio does not exist!');
         } else if (json.error === 'DUPLICATE_NAME') {
-          openNotification('Une radio portant le même nom existe déjà!');
+            openNotification('A radio with the same name is already registered!');
         } else {
-          openNotification('Radio editée!', 'success');
+          openNotification('Edited radio!', 'success');
         }
         this.refresh();
       });
@@ -149,9 +151,9 @@ export default class App extends Component {
       .then((res) => res.json())
       .then((json) => {
         if (json.error === 'NO_RADIO') {
-          openNotification('Cette radio n\'existe pas!');
+            openNotification('This radio does not exist!');
         } else {
-          openNotification('Radios réordonnées!', 'success');
+          openNotification('Reordered radios!', 'success');
         }
         this.refresh();
       });
@@ -169,9 +171,9 @@ export default class App extends Component {
       .then((res) => res.json())
       .then((json) => {
         if (json.error === 'NO_RADIO') {
-          openNotification('Cette radio n\'existe pas!');
+            openNotification('This radio does not exist!');
         } else {
-          openNotification('Radio supprimée!', 'success');
+          openNotification('Removed radio!', 'success');
         }
         this.refresh();
       });
@@ -185,7 +187,10 @@ export default class App extends Component {
       deletingRadio: null,
     }, () => {
       fetch('api/radios')
-        .then((res) => res.json())
+          .then((res) => {
+              console.log(res);
+            return res.json();
+        })
         .then((radios) => this.setState({ radios: radios.radios }));
     });
   }
@@ -211,14 +216,14 @@ export default class App extends Component {
           }}
           >
           <div>
-            <a href="https://doc.ubuntu-fr.org/liste_radio_france" rel="noopener noreferrer" target="_blank">Trouver une radio</a>
+            <a href="https://doc.ubuntu-fr.org/liste_radio_france" rel="noopener noreferrer" target="_blank">Find a radio</a>
           </div>
             <Button
               type="primary"
               style={{ backgroundColor: 'green' }}
               onClick={() => this.setState({ addingRadio: true })}
             >
-              <Icon type="plus-circle" />
+              <PlusCircleOutlined />
               {' '}
   Ajouter une radio
             </Button>
@@ -256,7 +261,7 @@ export default class App extends Component {
           </div>
         )}
         <Modal
-          title="Ajouter une radio"
+          title="Add a radio"
           visible={addingRadio}
           okButtonProps={{
             disabled: tempName.length === 0 || tempUrl.length === 0,
@@ -266,26 +271,26 @@ export default class App extends Component {
         >
           {(tempName.length > 0 && tempUrl.length > 0) ? null : (
             <Alert
-              message={tempName.length === 0 ? 'Vous devez entrer un nom pour la radio' : 'Vous devez entrer une adresse pour la radio'}
+                        message={tempName.length === 0 ? 'You must enter a radio name' : 'You must enter a radio url'}
               type="warning"
             />
           )}
           <Input
-            placeholder="Nom de la radio"
+            placeholder="Radio name"
             max="12"
             min="1"
             value={tempName}
             onChange={(e) => this.setState({ tempName: e.target.value })}
           />
           <Input
-            placeholder="Adresse de la radio"
+            placeholder="Radio URL"
             min="1"
             value={tempUrl}
             onChange={(e) => this.setState({ tempUrl: e.target.value })}
           />
         </Modal>
         <Modal
-          title="Editer une radio"
+          title="Edit a radio"
           visible={editingRadio !== null}
           okButtonProps={{
             disabled: tempName.length === 0 || tempUrl.length === 0,
@@ -295,31 +300,31 @@ export default class App extends Component {
         >
           {(tempName.length > 0 && tempUrl.length > 0) ? null : (
             <Alert
-              message={tempName.length === 0 ? 'Vous devez entrer un nom pour la radio' : 'Vous devez entrer une adresse pour la radio'}
+                        message={tempName.length === 0 ? 'You must enter a radio name' : 'You must enter a radio url'}
               type="warning"
             />
           )}
           <Input
-            placeholder="Nom de la radio"
+            placeholder="Radio name"
             max="12"
             min="1"
             value={tempName}
             onChange={(e) => this.setState({ tempName: e.target.value })}
           />
           <Input
-            placeholder="Adresse de la radio"
+            placeholder="Radio URL"
             min="1"
             value={tempUrl}
             onChange={(e) => this.setState({ tempUrl: e.target.value })}
           />
         </Modal>
         <Modal
-          title="Supprimer une radio"
+          title="Remove a radio"
           visible={deletingRadio !== null}
           onOk={() => this.deleteRadio(deletingRadio)}
           onCancel={() => this.setState({ deletingRadio: null })}
         >
-          <h1>{`Supprimer la radio ${deletingRadio}?`}</h1>
+          <h1>{`Remove the radio ${deletingRadio}?`}</h1>
         </Modal>
       </div>
     );

@@ -1,6 +1,6 @@
 {
   "name": "raspberrypi-piwebradio-webapp",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Web app for raspberry piwebradio",
   "main": "index.js",
   "scripts": {
@@ -22,8 +22,8 @@
     "app"
   ],
   "resolutions": {
-  "caniuse-lite": "^1.0.30001579"
-},
+    "caniuse-lite": "^1.0.30001579"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "~4.16.1",

@@ -14,7 +14,7 @@ server.use(cors());
 server.use(logger('dev'));
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
-server.use(express.static('client/build'));
+server.use(express.static('client'));
 server.get('/api/radios', (req, res) => {
   fs.readFile(path.resolve(__dirname, 'files', 'radios.json')).then((json) => {
     res.send(json);

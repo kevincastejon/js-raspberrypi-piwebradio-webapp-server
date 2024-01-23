@@ -4,7 +4,6 @@
   "description": "Web app for raspberry piwebradio",
   "main": "index.js",
   "scripts": {
-    "preinstall": "cd ./client/ && npm install && npm run build",
     "start": "sudo node index.js",
     "start-debug-win": "node index.js",
     "build": "cd ./client/ && npm run build",
